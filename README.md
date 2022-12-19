@@ -7,76 +7,45 @@
 ```mermaid
 erDiagram
 
-clients  {
 
-INTEGER id
+  Clients {
+    INTEGER id
+    NVARCHAR name
+    NVARCHAR address
+  }
 
-NVARCHAR name
 
-NVARCHAR address
+  Orders {
+    INTEGER id PK
+    INTEGER client_id FK
+  }
 
-}
+  OrdersNomenclatures{
+    INTEGER id PK
+    INTEGER order_id FK
+    INTEGER nomenclature_id FK
+    INTEGER quantity
+  }
+  Nomenclatures{
+    INTEGER id PK
+    NVARCHAR name
+    INTEGER quantity
+    DECIMAL price
+    INTEGER category_id FK
 
-  
-  
+  }
+  Category{
+    INTEGER id PK
+    INTEGER parent_id FK
+    NVARCHAR name
+  }
+Orders ||--o{  Clients: "foreign key"
 
-orders  {
+OrdersNomenclatures ||--||  Orders: "foreign key"
+OrdersNomenclatures ||--o{  Nomenclatures: "foreign key"
+Nomenclatures ||--||  Category: "foreign key"
 
-INTEGER id
 
-INTEGER Name
-
-}
-
-  
-
-OrdersNomenclatures{
-
-INTEGER id
-
-INTEGER order_id
-
-INTEGER nomenclature_id
-
-INTEGER quantity
-
-}
-
-Nomenclatures{
-
-INTEGER id
-
-NVARCHAR name
-
-INTEGER quantity
-
-DECIMAL performanceRequirement
-
-INTEGER category_id
-
-  
-
-}
-
-Category{
-
-INTEGER id
-
-INTEGER parent_id
-
-NVARCHAR name
-
-}
-
-orders  ||--o{  clients: "foreign key"
-
-  
-
-OrdersNomenclatures  ||--o{  orders: "foreign key"
-
-OrdersNomenclatures  ||--o{  Nomenclatures: "foreign key"
-
-Nomenclatures  ||--o{  Category: "foreign key"
 ```
 
 ![Image alt](https://github.com/AsmodaiP/test_db/raw/main/Screenshot_3.png)
