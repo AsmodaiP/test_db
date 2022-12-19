@@ -79,6 +79,7 @@ OrdersNomenclatures  ||--o{  Nomenclatures: "foreign key"
 Nomenclatures  ||--o{  Category: "foreign key"
 ```
 
+![Image alt](https://github.com/AsmodaiP/test_db/raw/main/Screenshot_3.png)
 # Запросы 
 
  1. Получение информации о сумме товаров заказанных под каждого клиента
