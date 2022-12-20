@@ -110,19 +110,13 @@ GROUP BY clients.id
 2. Найти количество дочерних элементов первого уровня вложенности для
 категорий номенклатуры.
 
-# в задачке первый уровень вложенности, в таске это были бы
-# Стиральные машины
-# Холодильники
-# Телевизоры
-# Ноутбуки
-# Моноблоки
 
 ```sql 
 SELECT c1.name, COUNT(c2.id) AS children_count
 FROM categories c1
 LEFT JOIN categories c2 ON c2.parent_id = c1.id
+WHERE c1.parent_id IN (SELECT id FROM categories WHERE parent_id IS NULL)
 GROUP BY c1.id
-ORDER BY children_count DESC
 
 ```
 
